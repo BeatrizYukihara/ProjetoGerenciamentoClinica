@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas Agendadas</title>
+    <link rel="stylesheet" href="../static/consultas_agendadas.css">
+    <script>
+        async function obterConsultasAgendadas() {
+            try {
+                const response = await fetch('/consultas/agendadas');
+                if (!response.ok) {
+                    throw new Error('Nenhuma consulta agendada encontrada');
+                }
+                const consultas = await response.json();
+                const container = document.querySelector('.consultas-container');
+                container.innerHTML = ''; // Limpar dados existentes
+
+                consultas.forEach(consulta => {
+                    const div = document.createElement('div');
+                    div.classList.add('consulta');
+                    div.innerHTML = `
+                        <p><strong>Data:</strong> ${consulta.data}</p>
+                        <p><strong>Horário:</strong> ${consulta.horario}</p>
+                        <p><strong>Paciente:</strong> ${consulta.paciente}</p>
+                        <p><strong>Especialidade:</strong> ${consulta.especialidade}</p>
+                        <p><strong>Status:</strong> ${consulta.status}</p>
+                    `;
+                    container.appendChild(div);
+                });
+            } catch (error) {
+                document.querySelector('.consultas-container').innerHTML = `<p>${error.message}</p>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', obterConsultasAgendadas);
+    </script>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Bem-vindo, Dr(a). {{ usuario_nome }}</h1>
+            <nav>
+                <a href="/profissional_dashboard">Área do Profissional</a>
+                <a href="/prontuarios">Prontuários</a>
+                <a class="sair" href="/logout">Sair</a>
+            </nav>
+        </header>
+        
+        <main>
+            <section>
+                <h2>Consultas Agendadas</h2>
+                <div class="consultas-container">
+                    <!-- Consultas agendadas serão exibidas aqui -->
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

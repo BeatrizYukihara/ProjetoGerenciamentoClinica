@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Consultas</title>
+    <link rel="stylesheet" href="../static/minhas_consultas.css">
+    <script>
+        async function obterConsultas() {
+            try {
+                const response = await fetch('/consultas');
+                if (!response.ok) {
+                    throw new Error('Nenhuma consulta encontrada');
+                }
+                const consultas = await response.json();
+                const container = document.querySelector('.consultas-container');
+                container.innerHTML = ''; // Limpar dados existentes
+
+                consultas.forEach(consulta => {
+                    const div = document.createElement('div');
+                    div.classList.add('consulta');
+                    div.innerHTML = `
+                        <p><strong>Data:</strong> ${consulta.data}</p>
+                        <p><strong>Horário:</strong> ${consulta.horario}</p>
+                        <p><strong>Profissional:</strong> ${consulta.profissional}</p>
+                        <p><strong>Especialidade:</strong> ${consulta.especialidade}</p>
+                        <p><strong>Status:</strong> ${consulta.status}</p>
+                    `;
+                    container.appendChild(div);
+                });
+            } catch (error) {
+                document.querySelector('.consultas-container').innerHTML = `<p>${error.message}</p>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', obterConsultas);
+    </script>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Bem-vindo, {{ usuario_nome }}</h1>
+            <nav>
+                <a href="/agendar_consulta">Agendar Consulta</a>
+                <a href="/paciente_dashboard">Área do Paciente</a>
+                <a class="sair" href="/logout">Sair</a>
+            </nav>
+        </header>
+        
+        <main>
+            <section>
+                <h2>Minhas Consultas</h2>
+                <div class="consultas-container">
+                    <!-- Consultas serão exibidas aqui -->
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

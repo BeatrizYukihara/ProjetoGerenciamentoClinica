@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #ffb0b0;
+    color: #000;
+    line-height: 1.6;
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px; 
+}
+
+.page {
+    width: 100%;
+    max-width: 1100px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; 
+}
+
+header {
+    background-color: #a52a2a;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    background-color: #a52a2a;
+    font-size: 1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+nav a:hover {
+    background-color: #ff4c4c;
+    transform: scale(1.05);
+}
+
+main {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; 
+    background-color: #fff;
+}
+
+main h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 25px; /* Aumenta o espaço entre o título e o container */
+    text-align: center; 
+}
+
+
+.consultas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+    background-color: #d8d8d881; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid #a52a2a;
+}
+
+.consultas-container h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #000;
+}
+
+.consulta {
+    padding: 20px;
+    background-color: #fff; /* Fundo branco individual para cada consulta */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+}
+
+.consulta p {
+    margin-bottom: 10px;
+}
+
+.consulta p:last-child {
+    margin-bottom: 0;
+}
+
+/* Estiliza e centraliza a mensagem de erro */
+.consultas-container .mensagem-erro {
+    color: #a52a2a;
+    font-weight: 600;
+    text-align: center;
+    margin: 20px 0; 
+}
